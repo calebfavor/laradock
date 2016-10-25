@@ -130,6 +130,22 @@ RUN if [ ${INSTALL_OPCACHE} = true ]; then \
 COPY ./opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 
 
+#####################################
+# Imagick:
+#####################################
+ARG INSTALL_IMAGICK=false
+COPY ./imagick.ini /usr/local/etc/php/conf.d/imagick.ini
+RUN if [ ${INSTALL_IMAGICK} = true ]; then \
+    apt-get -y install \
+        ghostscript \
+    && apt-get update \
+    && apt-get -y install \
+            libmagickwand-dev \
+        --no-install-recommends \
+    && pecl install imagick \
+    && docker-php-ext-enable imagick \
+;fi
+
 #
 #--------------------------------------------------------------------------
 # Final Touch
