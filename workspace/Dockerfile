@@ -234,6 +234,22 @@ RUN if [ ${INSTALL_AEROSPIKE_EXTENSION} = false ]; then \
     rm /etc/php/7.0/cli/conf.d/aerospike.ini \
 ;fi
 
+
+#####################################
+# Imagick:
+#####################################
+ARG INSTALL_IMAGICK_PHP_7=false
+COPY ./imagick.ini /etc/php/7.0/cli/conf.d/imagick.ini
+RUN if [ ${INSTALL_IMAGICK_PHP_7} = true ]; then \
+    apt-get -y install \
+        ghostscript \
+    && apt-get update \
+    && apt-get -y install \
+            libmagickwand-dev \
+        --no-install-recommends \
+    && pecl install imagick \
+;fi
+
 #
 #--------------------------------------------------------------------------
 # Final Touch
