@@ -20,7 +20,7 @@ services:
                 - PGID=1000
                 - NODE_VERSION=stable
                 - TZ=UTC
-                - INSTALL_IMAGICK_PHP_7=true
+                - INSTALL_IMAGICK_PHP_7=false
         volumes_from:
             - volumes_source
         extra_hosts:
@@ -42,7 +42,7 @@ services:
                 - INSTALL_MEMCACHED=false
                 - INSTALL_OPCACHE=false
                 - INSTALL_AEROSPIKE_EXTENSION=false
-                - INSTALL_IMAGICK=true
+                - INSTALL_IMAGICK=false
             dockerfile: Dockerfile-70
         volumes_from:
             - volumes_source
