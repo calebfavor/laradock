@@ -146,6 +146,13 @@ RUN if [ ${INSTALL_IMAGICK} = true ]; then \
     && docker-php-ext-enable imagick \
 ;fi
 
+#####################################
+# exif:
+#####################################
+RUN docker-php-ext-install exif
+RUN docker-php-ext-configure exif \
+        --enable-exif
+
 #
 #--------------------------------------------------------------------------
 # Final Touch
